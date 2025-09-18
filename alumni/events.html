@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - AlumniConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🎓 AlumniConnect</h2>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="directory.html" class="nav-link">Directory</a>
+            <a href="jobs.html" class="nav-link">Jobs</a>
+            <a href="events.html" class="nav-link active">Events</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="login.html" class="nav-link login-btn">Login</a>
+        </div>
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <button class="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Alumni Events</h1>
+                    <p>Connect, learn, and network with fellow alumni at upcoming events</p>
+                </div>
+                <button class="create-event-btn">+ Create Event</button>
+            </div>
+        </div>
+
+
+        <!-- Event Filters and View Toggle -->
+        <div class="event-controls">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All Events</button>
+                <button class="filter-tab" data-filter="networking">Networking</button>
+                <button class="filter-tab" data-filter="workshop">Workshops</button>
+                <button class="filter-tab" data-filter="reunion">Reunions</button>
+                <button class="filter-tab" data-filter="entrepreneurship">Entrepreneurship</button>
+                <button class="filter-tab" data-filter="career">Career</button>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">⊞</button>
+                <button class="view-btn" data-view="list">☰</button>
+            </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-section">
+            <div id="eventsGrid" class="events-grid">
+                <!-- Events will be loaded dynamically -->
+            </div>
+            <div class="load-more-section">
+                <button class="load-more-btn">Load More Events</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Event Details Modal -->
+    <div id="eventModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="eventModalContent">
+                <!-- Event details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/ml.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pages/events.js"></script>
+</body>
+</html>

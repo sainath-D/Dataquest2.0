@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f7fa;
+      color: #1e293b;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    /* Metric Card */
+    .metric-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      transition: transform 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .metric-change {
+      font-size: 0.85rem;
+      color: #10b981;
+    }
+
+    .metric-icon {
+      width: 40px;
+      height: 40px;
+      background: #e2e8f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 1.2rem;
+    }
+
+    /* Grid Layout */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1200px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Main Card */
+    .main-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title button {
+      background: linear-gradient(90deg, #1e3a8a, #0d9488);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .card-title button:hover {
+      background: #1e3a8a;
+    }
+
+    /* Department Section */
+    .department-section {
+      margin-bottom: 1.5rem;
+      padding: 1.25rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .department-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .department-name {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .completion-rate {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .department-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .progress-container {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #1e3a8a, #0d9488);
+      border-radius: 4px;
+    }
+
+    /* Data Quality Insights */
+    .data-quality {
+      background: #fff8d0;
+      border: 1px solid #fbbf24;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .data-quality h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #f59e0b;
+    }
+
+    .data-quality ul {
+      list-style: none;
+      margin-left: 1rem;
+    }
+
+    .data-quality li {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Privacy Audit Log */
+    .audit-log {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .audit-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .audit-header i {
+      color: #10b981;
+      margin-right: 0.5rem;
+    }
+
+    .audit-item {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .audit-item:last-child {
+      border-bottom: none;
+    }
+
+    .audit-date {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+    }
+
+    .audit-action {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .audit-description {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .privacy-status {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .privacy-status i {
+      color: #10b981;
+      margin-right: 0.5rem;
+    }
+
+    .privacy-status h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #10b981;
+    }
+
+    .privacy-status p {
+      font-size: 0.85rem;
+      color: #065f46;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .action-item {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .action-item:hover {
+      background: #f1f5f9;
+    }
+
+    .action-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .action-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Admin Dashboard</h1>
+      <p>Monitor alumni engagement, data quality, and system health</p>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="grid-4">
+      <!-- Total Alumni -->
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Total Alumni</div>
+          <div class="metric-value">842</div>
+          <div class="metric-change">+12 this month</div>
+        </div>
+        <div class="metric-icon"><i class="fas fa-user"></i></div>
+      </div>
+
+      <!-- Active Last 30 Days -->
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Active Last 30 Days</div>
+          <div class="metric-value">312</div>
+          <div class="metric-change">+8.2%</div>
+        </div>
+        <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+      </div>
+
+      <!-- Avg Profile Completion -->
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Avg Profile Completion</div>
+          <div class="metric-value">74%</div>
+          <div class="metric-change">+2.1%</div>
+        </div>
+        <div class="metric-icon"><i class="fas fa-chart-bar"></i></div>
+      </div>
+
+      <!-- Monthly Donations -->
+      <div class="metric-card">
+        <div>
+          <div class="metric-label">Monthly Donations</div>
+          <div class="metric-value">₹2.4L</div>
+          <div class="metric-change">+15.3%</div>
+        </div>
+        <div class="metric-icon"><i class="fas fa-arrow-up"></i></div>
+      </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="main-card">
+      <div class="card-title">
+        <h3>Department Analytics</h3>
+        <button><i class="fas fa-download"></i> Export Report</button>
+      </div>
+
+      <!-- Computer Science -->
+      <div class="department-section">
+        <div class="department-header">
+          <div class="department-name">Computer Science</div>
+          <div class="completion-rate">78% avg completion</div>
+        </div>
+        <div class="department-stats">
+          <div>
+            <div class="stat-label">Total Alumni</div>
+            <div class="stat-value">342</div>
+          </div>
+          <div>
+            <div class="stat-label">Active (30d)</div>
+            <div class="stat-value">156</div>
+          </div>
+          <div>
+            <div class="stat-label">Engagement Rate</div>
+            <div class="stat-value">46%</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 46%;"></div>
+        </div>
+      </div>
+
+      <!-- Electrical Engineering -->
+      <div class="department-section">
+        <div class="department-header">
+          <div class="department-name">Electrical Engineering</div>
+          <div class="completion-rate">72% avg completion</div>
+        </div>
+        <div class="department-stats">
+          <div>
+            <div class="stat-label">Total Alumni</div>
+            <div class="stat-value">234</div>
+          </div>
+          <div>
+            <div class="stat-label">Active (30d)</div>
+            <div class="stat-value">89</div>
+          </div>
+          <div>
+            <div class="stat-label">Engagement Rate</div>
+            <div class="stat-value">38%</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 38%;"></div>
+        </div>
+      </div>
+
+      <!-- Mechanical Engineering -->
+      <div class="department-section">
+        <div class="department-header">
+          <div class="department-name">Mechanical Engineering</div>
+          <div class="completion-rate">69% avg completion</div>
+        </div>
+        <div class="department-stats">
+          <div>
+            <div class="stat-label">Total Alumni</div>
+            <div class="stat-value">156</div>
+          </div>
+          <div>
+            <div class="stat-label">Active (30d)</div>
+            <div class="stat-value">67</div>
+          </div>
+          <div>
+            <div class="stat-label">Engagement Rate</div>
+            <div class="stat-value">43%</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 43%;"></div>
+        </div>
+      </div>
+
+      <!-- Business Administration -->
+      <div class="department-section">
+        <div class="department-header">
+          <div class="department-name">Business Administration</div>
+          <div class="completion-rate">81% avg completion</div>
+        </div>
+        <div class="department-stats">
+          <div>
+            <div class="stat-label">Total Alumni</div>
+            <div class="stat-value">110</div>
+          </div>
+          <div>
+            <div class="stat-label">Active (30d)</div>
+            <div class="stat-value">45</div>
+          </div>
+          <div>
+            <div class="stat-label">Engagement Rate</div>
+            <div class="stat-value">41%</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: 41%;"></div>
+        </div>
+      </div>
+
+      <!-- Data Quality Insights -->
+      <div class="data-quality">
+        <h4>Data Quality Insights</h4>
+        <ul>
+          <li>• 23 profiles missing LinkedIn URLs</li>
+          <li>• 45 profiles with incomplete job information</li>
+          <li>• 12 profiles flagged for potential duplicates</li>
+          <li>• 89% overall data completeness score</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div style="display: flex; gap: 2rem;">
+      <!-- Privacy Audit Log -->
+      <div class="audit-log">
+        <div class="audit-header">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Privacy Audit Log</h3>
+        </div>
+        <div class="audit-item">
+          <div class="audit-date">2024-02-15 14:30:22</div>
+          <div class="audit-action">Auto-Clean Job Executed</div>
+          <div class="audit-description">Removed 3 inactive profiles, anonymized 12 old records</div>
+        </div>
+        <div class="audit-item">
+          <div class="audit-date">2024-02-15 09:15:44</div>
+          <div class="audit-action">Data Export Request</div>
+          <div class="audit-description">Admin requested alumni engagement report (anonymized)</div>
+        </div>
+        <div class="audit-item">
+          <div class="audit-date">2024-02-14 18:45:12</div>
+          <div class="audit-action">Privacy Policy Update</div>
+          <div class="audit-description">Updated GDPR compliance terms, notified 842 users</div>
+        </div>
+        <div class="audit-item">
+          <div class="audit-date">2024-02-14 11:20:33</div>
+          <div class="audit-action">Bulk Email Sent</div>
+          <div class="audit-description">Newsletter sent to 654 opt-in subscribers</div>
+        </div>
+        <div class="audit-item">
+          <div class="audit-date">2024-02-13 16:12:18</div>
+          <div class="audit-action">Profile Data Anonymized</div>
+          <div class="audit-description">Processed deletion request for user ID #3847</div>
+        </div>
+        <div class="privacy-status">
+          <div><i class="fas fa-shield-alt"></i> Privacy Status: Compliant</div>
+          <p>All data handling processes are GDPR compliant.<br>Last privacy audit: Feb 12, 2024</p>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="action-item">
+          <div class="action-title">Send Newsletter</div>
+          <div class="action-desc">Compose and send to subscribers</div>
+        </div>
+        <div class="action-item">
+          <div class="action-title">Backup Data</div>
+          <div class="action-desc">Create secure backup</div>
+        </div>
+        <div class="action-item">
+          <div class="action-title">Review Reports</div>
+          <div class="action-desc">View flagged content</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

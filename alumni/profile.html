@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - AlumniConnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🎓 AlumniConnect</h2>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">Smart Matches</a>
+            <a href="directory.html" class="nav-link">Directory</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="profile.html" class="nav-link active">Profile</a>
+            <a href="dashboard.html" class="nav-link">Admin</a>
+        </div>
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- Dark Mode Toggle -->
+        <button class="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <!-- Profile Header -->
+            <div class="profile-header-new">
+                <h1>My Profile</h1>
+                <p>Manage your alumni profile and preferences</p>
+            </div>
+
+            <!-- Profile Completion -->
+            <div class="completion-card-new">
+                <div class="completion-content">
+                    <div class="completion-info">
+                        <h3>Profile Completion</h3>
+                        <span class="completion-percentage-new" id="completionPercentage">65% Complete</span>
+                        <p class="completion-tip">Unlock AI Matches! Complete your profile to get better recommendations.</p>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar-new">
+                            <div class="progress-new" id="completionProgress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="profile-form-card">
+                <form id="profileForm">
+                    <div class="profile-content">
+                        <!-- Profile Avatar Section -->
+                        <div class="profile-avatar-section">
+                            <div class="avatar-container">
+                                <div class="avatar-circle">
+                                    <span class="avatar-initials" id="avatarInitials">SJ</span>
+                                    <div class="avatar-upload">
+                                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                                        <button type="button" class="upload-btn" onclick="document.getElementById('avatarUpload').click()">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                                <circle cx="12" cy="13" r="4"></circle>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <p class="avatar-text">Click to upload photo</p>
+                            </div>
+                        </div>
+
+                        <!-- Form Fields -->
+                        <div class="form-fields">
+                            <!-- Basic Information -->
+                            <div class="form-group-new">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="Sarah Johnson" required>
+                            </div>
+
+                            <div class="form-row-new">
+                                <div class="form-group-new">
+                                    <label for="gradYear">Graduation Year</label>
+                                    <select id="gradYear">
+                                        <option value="2018" selected>2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-new">
+                                    <label for="department">Department</label>
+                                    <select id="department">
+                                        <option value="Computer Science" selected>Computer Science</option>
+                                        <option value="Electronics">Electronics</option>
+                                        <option value="Mechanical">Mechanical</option>
+                                        <option value="Civil">Civil</option>
+                                        <option value="Chemical">Chemical</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group-new">
+                                <label for="jobTitle">Job Title</label>
+                                <input type="text" id="jobTitle" value="Senior Software Engineer">
+                            </div>
+
+                            <div class="form-group-new">
+                                <label for="company">Company</label>
+                                <input type="text" id="company" value="Google">
+                            </div>
+
+                            <div class="form-group-new">
+                                <label for="location">Location</label>
+                                <div class="location-input">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <input type="text" id="location" value="Bangalore, India">
+                                </div>
+                            </div>
+
+                            <div class="form-group-new">
+                                <label for="linkedIn">LinkedIn URL</label>
+                                <div class="url-input">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                                    </svg>
+                                    <input type="url" id="linkedIn" value="https://linkedin.com/in/sarahjohnson">
+                                </div>
+                            </div>
+
+                            <!-- Interests -->
+                            <div class="form-group-new">
+                                <label>Interests</label>
+                                <div class="interests-grid-new">
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="AI" checked>
+                                        <span class="checkmark">AI</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Startups" checked>
+                                        <span class="checkmark">Startups</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Mentorship" checked>
+                                        <span class="checkmark">Mentorship</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Research">
+                                        <span class="checkmark">Research</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Teaching">
+                                        <span class="checkmark">Teaching</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Product Management">
+                                        <span class="checkmark">Product Management</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Data Science">
+                                        <span class="checkmark">Data Science</span>
+                                    </label>
+                                    <label class="checkbox-label-new">
+                                        <input type="checkbox" name="interests" value="Cybersecurity">
+                                        <span class="checkmark">Cybersecurity</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Profile Visibility -->
+                            <div class="privacy-section">
+                                <div class="privacy-item-new">
+                                    <div class="privacy-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#10B981" stroke="none">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="privacy-content">
+                                        <h4>Profile Visibility</h4>
+                                        <p>Your profile is public</p>
+                                    </div>
+                                    <label class="toggle-switch-new">
+                                        <input type="checkbox" id="profileVisibility" checked>
+                                        <span class="toggle-slider-new"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Save Button -->
+                            <div class="form-actions-new">
+                                <button type="submit" class="save-btn">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                        <polyline points="17,21 17,13 7,13 7,21"></polyline>
+                                        <polyline points="7,3 7,8 15,8"></polyline>
+                                    </svg>
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Updating profile...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pages/profile.js"></script>
+</body>
+</html>

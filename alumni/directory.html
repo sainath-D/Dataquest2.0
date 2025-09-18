@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Directory - AlumniConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>🎓 AlumniConnect</h2>
+        </div>
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="directory.html" class="nav-link active">Directory</a>
+            <a href="jobs.html" class="nav-link">Jobs</a>
+            <a href="events.html" class="nav-link">Events</a>
+            <a href="donate.html" class="nav-link">Donate</a>
+            <a href="feedback.html" class="nav-link">Feedback</a>
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="login.html" class="nav-link login-btn">Login</a>
+        </div>
+        <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <button class="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Alumni Directory</h1>
+            <p>Connect with alumni from your university. Search by name, company, skills, or use filters to find specific profiles.</p>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Find alumni by name, company, skill..." class="search-input">
+                <button id="filtersBtn" class="filters-btn">Filters</button>
+            </div>
+            
+        </div>
+
+
+        <!-- Search Results -->
+        <div id="searchResults" class="results-section">
+            <div class="results-header">
+                <span id="resultsCount">Showing 5 of 6 alumni</span>
+            </div>
+
+
+            <!-- Alumni Grid -->
+            <div id="alumniGrid" class="alumni-grid">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="no-results hidden">
+                <div class="no-results-icon">🔍</div>
+                <h3>No matches found</h3>
+                <p>Try adjusting your search terms or filters</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alumni Profile Modal -->
+    <div id="profileModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="profileModalContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/ml.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/pages/directory.js"></script>
+</body>
+</html>
